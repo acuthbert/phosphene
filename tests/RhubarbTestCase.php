@@ -11,6 +11,7 @@ use Rhubarb\Crown\Tests\LoginProviders\UnitTestingLoginProvider;
 use Rhubarb\Crown\UrlHandlers\ClassMappedUrlHandler;
 use Rhubarb\Crown\UrlHandlers\StaticResourceUrlHandler;
 use Rhubarb\Crown\UrlHandlers\NamespaceMappedUrlHandler;
+use Rhubarb\Stem\Repositories\Repository;
 
 /**
  * This base class adds basic setup and teardown for unit testing within the Core
@@ -33,6 +34,8 @@ class RhubarbTestCase extends \PHPUnit_Framework_TestCase
 
         $request = Context::CurrentRequest();
         $request->Reset();
+
+        Repository::setDefaultRepositoryClassName( '\Rhubarb\Stem\Repositories\Offline\Offline' );
     }
 
     public static function tearDownAfterClass()
